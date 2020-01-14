@@ -27,7 +27,7 @@ In order to compile, i.e., transform SCSS into CSS, run:
 sass source_file.scss:resulting_file.css
 ```
 
-Calling Sass with the optional argument ``--watch`` obliges it to automatically recompile whenever there are changes to the .scss file:
+Calling Sass with the optional argument ``--watch`` obliges it to automatically recompile whenever changes are made on the specified .scss file:
 
 ```bash
 sass --watch source_file.scss:resulting_file.css
