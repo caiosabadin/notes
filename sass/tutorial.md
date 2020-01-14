@@ -1,37 +1,45 @@
 # Sass #
 
-Sass is a CSS preprocessor, which means it needs to be compiled in order to generate a .css file.
-Its file extension is .scss.
+Sass is a CSS preprocessor.
+
+Its file extension is .scss. After the compilation of that file, it generates a .css file.
 
 ## Installation ##
 
-Install Ruby. After that, use ``gem`` to install Sass, then check if everything is alright calling it with the option ``-v``:
+Install Ruby. Then use ``gem`` to install Sass:
 
 ```bash
 curl -sSL https://get.rvm.io | bash -s stable
 gem install sass
+```
+
+Check if everything went right by calling it with the option ``-v``:
+
+```bash
 sass -v
 ```
 
 ## Compiling ##
 
-In order to transform a .scss file into a .css one, just run:
+In order to compile, i.e., transform SCSS into CSS, run:
 
 ```bash
-sass file.scss:another_file.css
+sass source_file.scss:resulting_file.css
 ```
 
-You can use ``--watch`` in order to oblige Sass to automatically recompile whenever there are changes to the .scss file:
+Calling Sass with the optional argument ``--watch`` obliges it to automatically recompile whenever there are changes to the .scss file:
 
 ```bash
-sass --watch file.scss:another_file.css
+sass --watch source_file.scss:resulting_file.css
 ```
 
-To try it online, one might use https://www.sassmeister.com/
+There are also in-browser compilators available, such as [https://www.sassmeister.com/](SassMeister).
 
-## How to write expressions ##
+## Writing SCSS ##
 
-Plain CSS is valid SCSS, but the opposite way round may not be true. Valid Sass looks just like this:
+Even though the other way round is not always true, plain CSS is valid SCSS.
+
+Therefore, Sass syntax may be as simple as:
 
 ```scss
 selector {
@@ -41,7 +49,9 @@ selector {
 
 ## Encoding ##
 
-It is a recommended practice to enforce the character encoding right before anything else on the current stylesheet, by using the code:
+It is a good practice to enforce the character encoding.
+
+Do that right before anything else on the stylesheet:
 
 ```scss
 @charset 'utf-8';
@@ -51,7 +61,9 @@ For other useful guidelines, refer to https://sass-guidelin.es/
 
 ## Commentaries ##
 
-Plain CSS commentaries work, but if you want to write comments that are going to be ignored by the compiler...:
+Plain CSS commentaries work, and are written on the resulting CSS file.
+
+Commentaries ignored by the Sass compiler, and thus not available on the resulting CSS file, may be written as:
 
 ```scss
 // Some comment
@@ -246,6 +258,35 @@ $default_colour:#fff;
 ```
 
 As aforesaid, the nesting technique, notably when a profoundly descending nest exists, should be employed using caution; it lessens the loading speed, and results in an increased coupling between the HTML and the CSS, causing the last to be extremely dependant on the first; thus, a small change within the HTML could cause the whole layout to crash.
+
+## Media Queries ##
+
+Media queries might be nested as well, inside the selectors that should be modified by them:
+
+```scss
+$media_specification: "(max-width: 600px)";
+
+header {
+  font-size:2rem;
+  
+  @media #{$media_specification} {
+    font-size:3rem;
+  }
+}
+```
+
+Which would result in:
+
+```css
+header {
+  font-size: 2rem;
+}
+@media (max-width: 600px) {
+  header {
+    font-size: 3rem;
+  }
+}
+```
 
 ## The import directive ##
 
@@ -523,8 +564,12 @@ Nevertheless, applying mixins in a large scale might as well be not good, in tha
 
 So, whether parameters aren't needed and one can guarantee the rules aren't going to be overwritten later, the extend technique might be employed in order to avoid crafting much too large hence heavy CSS files.
 
----
-FALTA:
-	* functions
-	* if, else, for, foreach, sassscript
-	* media-queries
+## What else to do in Sass? ##
+
+Besides the usual reading about the different frameworks derivated from Sass, such as [http://compass-style.org/](Compass), there is more to check.
+
+It is recommended learning how to work with the [https://sass-lang.com/documentation/at-rules/use](the new modules system), which should replace most, if not all, uses of ``@import``.
+
+Getting to know more about SassScript may be as well very benefic. And, to do that, being acquainted with [https://sass-lang.com/documentation/at-rules/control](the flow control rules) is imperative.
+
+Last but not least, the awareness of [https://sass-lang.com/documentation/modules](some of its built-in modules' functions) may someday prove very useful, specially those related to [https://sass-lang.com/documentation/modules/math](mathematics), [https://sass-lang.com/documentation/modules/color](colours), [https://sass-lang.com/documentation/modules/string](strings), and [https://sass-lang.com/documentation/modules/list](lists).
