@@ -146,6 +146,27 @@ a:visited {
 
 Those functions, as perceived on the previous snippet, take two parameters: the colour which is going to be either lightened or darkened and the percentage of how much so. The percent symbol is optional.
 
+## Creating functions ##
+
+One could also create their own functions:
+
+```scss
+// Sass considers both - (hyphen) and _ (underscore) to be the same
+@function function-name($argument1, $argument2: defaultValue, $argument3...) {
+	@return $argument1 * $argument2
+}
+```
+
+The ``@return`` directive always causes the function to end, and all the functions must have this directive.
+
+An argument becomes optional when it has a default value, as in the case of ``$argument2`` above.
+
+When an argument is followed by ``...``, it is acessed inside the function as a list.
+
+Errors and warnings may be arisen using the respective ``@error`` and ``@warn`` directives.
+
+Sass supports flow control, loops and iteration through lists. Refer to https://sass-lang.com/documentation/at-rules/control for a more detailed view on these.
+
 ## Nesting ##
 
 For us not to repeat code, it's possible to nest expressions with Sass. So, for example, the last excerpt might be rewritten as:
