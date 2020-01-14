@@ -13,7 +13,7 @@ curl -sSL https://get.rvm.io | bash -s stable
 gem install sass
 ```
 
-Check if everything went right by calling it with the option ``-v``:
+Call Sass with the argument ``-v`` to check if everything went right:
 
 ```bash
 sass -v
