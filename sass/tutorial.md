@@ -39,7 +39,7 @@ There are also in-browser compilators available, such as [https://www.sassmeiste
 
 Even though the other way round is not always true, plain CSS is valid SCSS.
 
-Therefore, Sass syntax may be as simple as:
+Therefore, Sass' syntax may be as simple as:
 
 ```scss
 selector {
