@@ -191,7 +191,7 @@ When calling the function, both hyphen and underscore are considered the same ch
 
 Sass supports flow control, loops and iteration through lists. For a detailed view on these, check [its official documentation](https://sass-lang.com/documentation/at-rules/control).
 
-## More useful functions ##
+## A pair of useful functions ##
 
 Besides the processing of numbers, the built-in functions on Sass also deal with [strings](https://sass-lang.com/documentation/modules/string), [colours](https://sass-lang.com/documentation/modules/color) and [more](https://sass-lang.com/documentation/modules).
 
@@ -214,13 +214,15 @@ a:visited {
 }
 ```
 
-VER A PARTIR DA AQUI
 ## Nesting ##
 
-For us not to repeat code, it's possible to nest expressions with Sass. So, for example, the last excerpt might be rewritten as:
+Nesting the selectors makes it possible not to repeat code unnecessarily.
+
+They are specially convenient when a selector holds a significant number of pseudo-classes, which is the case of the last excerpt, which could be rewritten, using the nesting technique, as:
 
 ```scss
 @charset 'utf-8';
+
 $default_colour: #a33efd;
 
 a {
@@ -236,10 +238,12 @@ a {
 }
 ```
 
-Hadn't the "&" been used, or had the same selector been used again inside the nesting, some weird results would have appeared in the compiled CSS file, such as:
+In the resulting stylesheet, the ampersand selector is replaced by the higher-level selector it is nested within.
+
+Had not the ampersand been used, or had the same selector been used again inside the nesting, the results would not have  worked expectedly:
 
 ```scss
-/* This is what happens when we do not use any selector inside the nesting */
+/* This is what happens when no selector is applied inside the nesting */
 p {
   color: #a33efd;
 }
@@ -247,7 +251,7 @@ p :hover {
   color: #bb70fe;
 }
 
-/* This is what happens when we use the same selector twice */
+/* This is what happens when the ampersand is replaced by the higher-level selector */
 p {
   color: #a33efd;
 }
@@ -256,7 +260,7 @@ p p:hover {
 }
 ```
 
-Needless to say, both wouldn't work expectedly. Nevertheless, nesting selectors inside each other, as in the previous second example given, is useful when we have a structure similar as the following:
+However, nesting selectors inside each other is useful for repetitive structures similar as the one :
 
 ```scss
 #menu { ... }
@@ -266,12 +270,11 @@ Needless to say, both wouldn't work expectedly. Nevertheless, nesting selectors 
 #menu ul li a:hover { ... }
 ```
 
-Unless mandatory or expressly needed, it's not recommended to apply many selectors at once, in that it greatly reduces performance, since most browsers would read those selectors from left to right.
-
-However, a structure such as above might be accordingly nested as:
+Which could be accordingly nested as:
 
 ```scss
 @charset 'utf-8';
+
 $default_colour:#fff;
 
 #menu {
@@ -295,14 +298,19 @@ $default_colour:#fff;
 }
 ```
 
-As aforesaid, the nesting technique, notably when a profoundly descending nest exists, should be employed using caution; it lessens the loading speed, and results in an increased coupling between the HTML and the CSS, causing the last to be extremely dependant on the first; thus, a small change within the HTML could cause the whole layout to crash.
+Readers are cautioned against nesting, unless the resulting structure is mandatory or expressly needed, in that it greatly reduces performance: nestings could go fathomlessly, and the greater the number of selectors, the slower the browser interprets the rules specified by them, since most browsers would read those selectors from left to right.
+
+Moreover, nesting may also increase coupling between the HTML and the CSS, causing the last to be extremely dependant on the first, thus possibly crashing the whole layout even after minor changes made to the HTML.
 
 ## Media Queries ##
 
-Media queries might be nested as well, inside the selectors that should be modified by them:
+Media queries can be nested as well, inside the selectors they must adjust.
+
+This way, the query stays closer to the element they modify, improving readability:
 
 ```scss
 @charset 'utf-8';
+
 $media_specification: "(max-width: 600px)";
 
 header {
@@ -314,29 +322,17 @@ header {
 }
 ```
 
-Which would result in:
-
-```css
-header {
-  font-size: 2rem;
-}
-@media (max-width: 600px) {
-  header {
-    font-size: 3rem;
-  }
-}
-```
-
 ## The import directive ##
 
-Instead of using nested code, a better approach to logically divide the stylesheet on Sass is to physically split the files, lately joining them together again by the use of the extended CSS ``@import`` directive. By doing so, the number of HTTP requests are also reduced, since the compiler links all the imported files together in one.
+Instead of using nested code, a better approach to logically divide the stylesheet is to physically split its related parts in separate files.
 
-There may be a single .scss file for each relevant part of the layout, such as the header, the footer, an about section. Since variables are limited by their scopes, it might be also interesting to have a stylesheet containing only the global variables. The same is true for other specific Sass elements, such as mixins, functions, and other assumptions that are going to be discussed eventually on this page.
+Those files are compiled and then regrouped into a single one again, using the the Sass-extended ``@import`` directive, in order to lessen the number of HTTP requests made to the server.
 
-So, let a layout have files such as ``variables.scss``, ``overall.scss``, ``header.scss``, ``menu.scss``, ``content.scss``, ``about.scss``, ``footer.scss``. A file such as ``style.css`` can be created, joining them all together:
+So, supposing a layout have files such as ``variables.scss``, ``overall.scss``, ``header.scss``, ``menu.scss``, ``content.scss``, ``about.scss``, ``footer.scss``. A file such as ``style.css`` can be created, combining the others altogether:
 
 ```scss
 @charset 'utf-8';
+
 @import "path/to/variables"
 @import "path/to/overall"
 @import "path/to/header"
@@ -346,11 +342,9 @@ So, let a layout have files such as ``variables.scss``, ``overall.scss``, ``head
 @import "path/to/footer"
 ```
 
-The .scss extension is optional. Any other extension used results on the Sass preprocessor calling the traditional CSS ``@import`` directive, which should be avoided because of the low performance.
+The .scss extension can be omitted. Any other extension used is interpreted by Sass as a call to the traditional CSS ``@import`` directive, which should be avoided because of its low performance. Anyway, since every CSS is also SCSS, any stylesheet may be renamed as .scss and then regularly imported by Sass.
 
-Anyway, since every .css file is also a .scss file, each of the project's stylesheet may be renamed as .scss and then regularly imported by the Sass compiler.
-
-There has just been released a new functionality to Sass, called the Module System, which was crafted so that the limitations of the ``@import`` directive could be overcome. Refer to https://sass-lang.com/blog/the-module-system-is-launched for more instructions about it, since this paper is project to be a brief overview.
+A new functionality has been added to Sass recently. It is called the Module System, created to overcome the limitations of the ``@import``. For more instructions about it, [refer to the official documentation](https://sass-lang.com/blog/the-module-system-is-launched).
 
 ## Extending ##
 
