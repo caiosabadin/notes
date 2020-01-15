@@ -35,9 +35,9 @@ Calling it with the optional argument ``--watch`` obliges Sass to automatically 
 sass --watch source_file.scss:resulting_file.css
 ```
 
-For more information about that argument, read [http://sassbreak.com/watch-your-sass/](this article by Guil Hernandez).
+For more information about that argument, read [this article by Guil Hernandez](http://sassbreak.com/watch-your-sass).
 
-Should you need to run quick tests elsewhere, there are also in-browser compilators available, such as [https://www.sassmeister.com/](SassMeister).
+Should you need to run quick tests elsewhere, there are also in-browser compilators available, such as [SassMeister](https://www.sassmeister.com).
 
 ## Writing SCSS ##
 
@@ -61,7 +61,7 @@ Do that right before anything else on the stylesheet:
 @charset 'utf-8';
 ```
 
-For other helpful guidelines, refer to [https://sass-guidelin.es/](this page by Hugo Giraudel).
+For other helpful guidelines, refer to [this page by Hugo Giraudel](https://sass-guidelin.es/).
 
 ## Comments ##
 
@@ -161,7 +161,7 @@ div {
 }
 ```
 
-For more information about mathematical functions such as ``round()``, refer to [https://sass-lang.com/documentation/modules/math](the official documentation).
+For more information about mathematical functions such as ``round()``, refer to [the official documentation](https://sass-lang.com/documentation/modules/math).
 
 ## Creating functions ##
 
@@ -189,11 +189,11 @@ Errors and warnings may be arisen when the respective ``@error`` and ``@warn`` d
 
 When calling the function, both hyphen and underscore are considered the same character.
 
-Sass supports flow control, loops and iteration through lists. Refer to its [https://sass-lang.com/documentation/at-rules/control](official documentation) for a detailed view on these.
+Sass supports flow control, loops and iteration through lists. For a detailed view on these, check [its official documentation](https://sass-lang.com/documentation/at-rules/control).
 
 ## More useful functions ##
 
-Besides the processing of numbers, the built-in functions on Sass also deal with strings, colours and more.
+Besides the processing of numbers, the built-in functions on Sass also deal with [strings](https://sass-lang.com/documentation/modules/string), [colours](https://sass-lang.com/documentation/modules/color) and [more](https://sass-lang.com/documentation/modules).
 
 For example, ``lighten()`` and ``darken()`` causes a colour to respectively turns lighter or darker according to a specified percentage, whose symbol is optional:
 
