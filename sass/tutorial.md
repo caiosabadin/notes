@@ -130,11 +130,11 @@ $media_specification: "(max-width: #{$max_size})";
 
 Variables work with mathematical expressions, and they also support sophisticated function calls.
 
-In the processed CSS stylesheet, the result of those Sass expressions or functions replaces the variable in whatever place it has been called.
+The result of those expressions or functions replaces the variable wherever it has been called.
 
 Only a single number in the expression is required to have explicit measurement units. The others are logically deduced based solely on this one.
 
-When the expression evinces no unit right away, an interpolation must be performed when the variable is called, in order to specificy that unit after the variable.
+When the expression evinces no unit right away, an interpolation must be performed to call the variable, making it possible to specificy its unit by its side.
 
 Hence, the rules below:
 
