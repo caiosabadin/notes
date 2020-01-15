@@ -37,7 +37,7 @@ sass --watch source_file.scss:resulting_file.css
 
 For more information about that argument, read [this article by Guil Hernandez](http://sassbreak.com/watch-your-sass).
 
-Should you need to run quick tests elsewhere, there are also in-browser compilators available, such as [SassMeister](https://www.sassmeister.com).
+Should a quick test be run elsewhere, in-browser compilators are available, such as [SassMeister](https://www.sassmeister.com).
 
 ## Writing SCSS ##
 
