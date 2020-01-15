@@ -4,7 +4,7 @@ Sass is a CSS preprocessor.
 
 Its file extension is .scss. The compilation of that file generates a .css file.
 
-It provides a set of labour-saving directives and definitions, to help the designers write semantically valid CSS faster.
+It provides a set of labour-saving directives, instructions and definitions, to help the designers write semantically valid CSS faster.
 
 ## Installation ##
 
