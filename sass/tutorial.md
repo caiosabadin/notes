@@ -2,7 +2,9 @@
 
 Sass is a CSS preprocessor.
 
-Its file extension is .scss. After the compilation of that file, it generates a .css file.
+Its file extension is .scss. The compilation of that file generates a .css file.
+
+It provides a set of labour-saving directives and definitions, to help the designers write semantically valid CSS faster.
 
 ## Installation ##
 
@@ -21,25 +23,27 @@ sass -v
 
 ## Compiling ##
 
-In order to compile, i.e., transform SCSS into CSS, run:
+In order to compile SCSS into CSS, run:
 
 ```bash
 sass source_file.scss:resulting_file.css
 ```
 
-Calling Sass with the optional argument ``--watch`` obliges it to automatically recompile whenever changes are made on the specified .scss file:
+Calling it with the optional argument ``--watch`` obliges Sass to automatically recompile whenever changes are made on the specified .scss file:
 
 ```bash
 sass --watch source_file.scss:resulting_file.css
 ```
 
-There are also in-browser compilators available, such as [https://www.sassmeister.com/](SassMeister).
+For more information about that argument, read [http://sassbreak.com/watch-your-sass/](this article by Guil Hernandez).
+
+Should you need to run quick tests elsewhere, there are also in-browser compilators available, such as [https://www.sassmeister.com/](SassMeister).
 
 ## Writing SCSS ##
 
-Even though the other way round is not always true, plain CSS is valid SCSS.
+Plain CSS is valid SCSS, although the contrary affirmation is not always true.
 
-Therefore, Sass' syntax may be as simple as:
+Therefore, the Sass syntax may be as simple as:
 
 ```scss
 selector {
@@ -49,7 +53,7 @@ selector {
 
 ## Encoding ##
 
-It is a good practice to enforce the character encoding.
+It is good practice to enforce the character encoding.
 
 Do that right before anything else on the stylesheet:
 
@@ -57,43 +61,48 @@ Do that right before anything else on the stylesheet:
 @charset 'utf-8';
 ```
 
-For other useful guidelines, refer to https://sass-guidelin.es/
+For other helpful guidelines, refer to [https://sass-guidelin.es/](this page by Hugo Giraudel).
 
-## Commentaries ##
+## Comments ##
 
-Plain CSS commentaries work, and are written on the resulting CSS file.
+Plain CSS comments work on SCSS, and are written to the resulting CSS file.
 
-Commentaries ignored by the Sass compiler, and thus not available on the resulting CSS file, may be written as:
+For the comments not to be shown in the compiled stylesheet, they must be written as:
 
 ```scss
+@charset 'utf-8';
 // Some comment
 ```
 
 ## Variables ##
 
-In Sass, you can declare a variables are declared and might be used like this:
+After the processing of SCSS files, the variables throughout the code are replaced by the values they are set with.
+
+Those values range from numeric definitions to whole strings, also including hexadecimal colour expressions and beyond.
+
+They are declared as ``$variable: value;`` and called simply by ``$variable``, e.g.:
 
 ```scss
-// This declaration means it's a variable with a value
+@charset 'utf-8';
 $color_gray: #ccc;
 
 body {
 	background-color: rgb($color_gray, 0.9);
 }
-
-// This declaration means it's a string variable, to replace some code chunk:
-$media_specification: "(max-width: 600px)";
 ```
 
-Colour values might be written in whatever preferred format, and they might be used wherever, even with RGB or HSL functions.
+Note that colours may be expressed in whatever preferred format, and that they may be used wherever, even inside RGB or HSL functions, like the example above.
 
-Just as in any other regular programming language, Sass's variables are limited by their scopes.
+Just as with many other programming languages, variables on Sass are limited by their scopes.
 
 ## Interpolation ##
 
-When we use such a variable as the last one mentioned above, interpolation is needed so that Sass may replace the chunks of code we want with that variable value. Simply call the variable inside ``#{$variable}``:
+Interpolation is needed when using string variables, so that Sass may replace the chunks of code with the values wanted.
+
+To do that, call the variable inside ``#{$variable}``:
 
 ```scss
+@charset 'utf-8';
 $media_specification: "(max-width: 600px)";
 
 @media #{$media_specification} {
@@ -103,11 +112,11 @@ $media_specification: "(max-width: 600px)";
 }
 ```
 
-Interpolation is also needed when you want to write a variable inside the quotes, so the previous excerpt could be improved as the follow:
+Interpolation is also necessary when a variable is called inside quotes: 
 
 ```scss
+@charset 'utf-8';
 $max_size: 600px;
-
 $media_specification: "(max-width: #{$max_size})";
 
 @media #{$media_specification} {
@@ -119,28 +128,77 @@ $media_specification: "(max-width: #{$max_size})";
 
 ## Expressions inside variables ##
 
-Naturally, mathematical expressions are supported by the variables, and might be used accordingly:
+Variables work with mathematical expressions, and they also support sophisticated function calls.
+
+In the processed CSS stylesheet, the result of those Sass expressions or functions replaces the variable in whatever place it has been called.
+
+Only a single number in the expression is required to have explicit measurement units. The others are logically deduced based solely on this one.
+
+When the expression evinces no unit right away, an interpolation must be performed when the variable is called, in order to specificy that unit after the variable.
+
+Hence, the rules below:
 
 ```scss
+@charset 'utf-8';
+$border: round(10px / 3px);
 $height: 3em * 5;
 $width: 5 + 3;
-$border: 10px / 3;
 
 div {
+  border:$border solid #000;
   height:$height;
   width:#{$width}px;
-  border:round($border) solid #000;
 }
 ```
-On the code above, note that only one of the numbers are required to have their measurement units explicited. Also note it is not necessary to point this information right away. However, when the unit is not evinced by the variable declaration, an interpolation must be performed when the variable is called, in order to place the measurement units after the variable.
 
-It's possible to use sophisticated functions to work with the variable values. Refer to https://sass-lang.com/documentation/modules/math for more information about those functions.
+Prompt this:
+
+```scss
+div {
+  border: 3px solid #000;
+  height: 15em;
+  width: 8px;
+}
+```
+
+For more information about mathematical functions such as ``round()``, refer to [https://sass-lang.com/documentation/modules/math](the official documentation).
+
+## Creating functions ##
+
+Sass permits the creation of functions:
+
+```scss
+@charset 'utf-8';
+
+@function function-name($argument1, $argument2: defaultValue, $argument3...) {
+	$result: $argument1 + $argument2;
+	@each $number in $argument3 {
+		$result: $result * $number;
+	}
+	@return $result;
+}
+```
+
+Functions have an obligatory ``@return`` directive. It causes the function to end when it is reached.
+
+Arguments become optional when a default value is defined to them. It is the case of the ``$argument2`` above.
+
+If an argument is followed by ``...``, it must be acessed inside the function as a list, like ``$argument3`` was, on the previous code.
+
+Errors and warnings may be arisen when the respective ``@error`` and ``@warn`` directives are applied.
+
+When calling the function, both hyphen and underscore are considered the same character.
+
+Sass supports flow control, loops and iteration through lists. Refer to its [https://sass-lang.com/documentation/at-rules/control](official documentation) for a detailed view on these.
 
 ## More useful functions ##
 
-Many of the functions available on Sass are not limited to the processing of numbers. One of its nicest possibilities is to work, for example, with colours. Two of those functions are specially useful when working with the hovering of elements. Those functions are lighten and darken:
+Besides the processing of numbers, the built-in functions on Sass also deal with strings, colours and more.
+
+For example, ``lighten()`` and ``darken()`` causes a colour to respectively turns lighter or darker according to a specified percentage, whose symbol is optional:
 
 ```scss
+@charset 'utf-8';
 $default_colour: #a33efd;
 
 a {
@@ -156,34 +214,13 @@ a:visited {
 }
 ```
 
-Those functions, as perceived on the previous snippet, take two parameters: the colour which is going to be either lightened or darkened and the percentage of how much so. The percent symbol is optional.
-
-## Creating functions ##
-
-One could also create their own functions:
-
-```scss
-// Sass considers both - (hyphen) and _ (underscore) to be the same
-@function function-name($argument1, $argument2: defaultValue, $argument3...) {
-	@return $argument1 * $argument2
-}
-```
-
-The ``@return`` directive always causes the function to end, and all the functions must have this directive.
-
-An argument becomes optional when it has a default value, as in the case of ``$argument2`` above.
-
-When an argument is followed by ``...``, it is acessed inside the function as a list.
-
-Errors and warnings may be arisen using the respective ``@error`` and ``@warn`` directives.
-
-Sass supports flow control, loops and iteration through lists. Refer to https://sass-lang.com/documentation/at-rules/control for a more detailed view on these.
-
+VER A PARTIR DA AQUI
 ## Nesting ##
 
 For us not to repeat code, it's possible to nest expressions with Sass. So, for example, the last excerpt might be rewritten as:
 
 ```scss
+@charset 'utf-8';
 $default_colour: #a33efd;
 
 a {
@@ -234,6 +271,7 @@ Unless mandatory or expressly needed, it's not recommended to apply many selecto
 However, a structure such as above might be accordingly nested as:
 
 ```scss
+@charset 'utf-8';
 $default_colour:#fff;
 
 #menu {
@@ -264,6 +302,7 @@ As aforesaid, the nesting technique, notably when a profoundly descending nest e
 Media queries might be nested as well, inside the selectors that should be modified by them:
 
 ```scss
+@charset 'utf-8';
 $media_specification: "(max-width: 600px)";
 
 header {
@@ -297,6 +336,7 @@ There may be a single .scss file for each relevant part of the layout, such as t
 So, let a layout have files such as ``variables.scss``, ``overall.scss``, ``header.scss``, ``menu.scss``, ``content.scss``, ``about.scss``, ``footer.scss``. A file such as ``style.css`` can be created, joining them all together:
 
 ```scss
+@charset 'utf-8';
 @import "path/to/variables"
 @import "path/to/overall"
 @import "path/to/header"
@@ -333,6 +373,7 @@ The later might be used for cases when it's interesting for a class to have its 
 The stylesheet above may be rewritten as:
 
 ```scss
+@charset 'utf-8';
 .button {
 	border-radius:100%;
 
@@ -365,6 +406,7 @@ And then, after compiling it with Sass, we are going to obtain the result below:
 Note that, when ``@extend`` is used, sub-selectors such as ``:hover`` are also extended, so the following code:
 
 ```scss
+@charset 'utf-8';
 .error {
   color:#000;
 }
@@ -398,6 +440,7 @@ Produces:
 Naturally, due to its intrinsic characteristics, ``@extend`` may be used to lessen the code's lines, by grouping all the selectors with similar properties together in one declaration one, since a SCSS like that:
 
 ```scss
+@charset 'utf-8';
 .color-black {
 	color:#000;
 }
@@ -447,6 +490,7 @@ So, to avoid building one-time-only selectors, placeholders might be applied. Pl
 This way, placeholder selectors can be used to overcome the problem aforementioned on the previous section, i.e., the creation of extendable one-time-only selectors:
 
 ```scss
+@charset 'utf-8';
 %color-black {
 	color:#000;
 }
@@ -492,6 +536,7 @@ Would result in:
 Mixins are another great way to practice the DRY methodology. They differ from the extend in that they don't join all the extended selectors at the beginning of the resulting CSS file, but rather replace its call by the supposed code. So, let the preprocessor work on the following code:
 
 ```scss
+@charset 'utf-8';
 $radius: 25%;
 @mixin round-border {
     -webkit-border-radius: $radius;
@@ -537,6 +582,7 @@ And it would give us this CSS:
 It is also possible to pass parameters to the mixins, and set default values to those:
 
 ```scss
+@charset 'utf-8';
 @mixin round-border($radius: 25%) {
     -webkit-border-radius: $radius;
        -moz-border-radius: $radius;
