@@ -76,7 +76,7 @@ For the comments not to be shown in the compiled stylesheet, they must be writte
 
 ## Variables ##
 
-Variables hold values. On Sass, they may be numeric, strings, hexadecimal colours and so on.
+A variable holds values. They may be numeric, list, strings, hexadecimal colours and so on.
 
 After the processing of a SCSS file, the variables are thoroughly replaced by the values they were set with.
 
