@@ -76,11 +76,11 @@ For the comments not to be shown in the compiled stylesheet, they must be writte
 
 ## Variables ##
 
-After the processing of SCSS files, the variables throughout the code are replaced by the values they are set with.
+Variables hold values. On Sass, they may be numeric, strings, hexadecimal colours and so on.
 
-Those values range from numeric definitions to whole strings, also including hexadecimal colour expressions and beyond.
+After the processing of a SCSS file, the variables are thoroughly replaced by the values they were set with.
 
-They are declared as ``$variable: value;`` and called simply by ``$variable``, e.g.:
+They are similarly declared as regular CSS properties, except a dollar symbol precedes its name, i.e. ``$variable: value;``. They are called by ``$variable``, e.g.:
 
 ```scss
 @charset 'utf-8';
