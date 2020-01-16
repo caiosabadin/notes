@@ -1,2 +1,3 @@
-# notes
-Project with some study notes on subjects regarding frameworks, programming languages and so on.
+# Notes
+
+Project with some personal study notes regarding frameworks, programming languages etc.
