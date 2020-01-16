@@ -148,9 +148,9 @@ $media_specification: "(max-width: #{$max_size})";
 
 Variables work with mathematical expressions, and they also support some sophisticated function calls.
 
-Those expressions' or functions' results replace the variable wherever it has been called.
+Results of those expressions and functions replace the variable wherever it has been called.
 
-Hence, the rules below:
+The rules below:
 
 ```scss
 @charset 'utf-8';
