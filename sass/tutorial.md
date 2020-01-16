@@ -98,9 +98,9 @@ For the comments not to be shown in the compiled stylesheet, they must be writte
 
 ## Placeholders ##
 
-Placeholders are special selectors that begun with a percent symbol.
+Placeholders are special selectors preceded by a percent symbol.
 
-Their content are always discarded by the compiler, hence never appearing in the final CSS:
+Their content is always discarded by the compiler, hence never appearing in the final CSS:
 
 ```scss
 @charset 'utf-8';
@@ -111,13 +111,13 @@ Their content are always discarded by the compiler, hence never appearing in the
 }
 ```
 
-Notwithstanding their apparent fruitlessness, there are certain situations, yet to be addressed, whose only optimal solution would be the use of placeholders. For instance, they are specially handy when [extending selectors](#extending).
+Notwithstanding their apparent fruitlessness, there are certain situations whose only optimal solution would be the use of placeholders. For instance, they are specially handy when [extending selectors](#extending), a situation yet to be addressed by this guide.
 
 ## Variables ##
 
 A variable holds values. They may be: numeric, list, strings, hexadecimal colours, among others.
 
-After the processing of a SCSS file, the variables are thoroughly replaced by the values they were set with.
+After the processing of a SCSS file, variables are thoroughly replaced by the values they were set with.
 
 They are similarly declared as regular CSS properties, except a dollar symbol precedes their name, i.e. ``$variable: value;``. They are called by ``$variable``, e.g.:
 
@@ -200,9 +200,9 @@ div {
 }
 ```
 
-Only a single number in the expression is required to have explicit measurement units. The others are logically deduced based solely on this one, such as with the ``$height`` variable before.
+Only a single number in the expression is required to have explicit measurement units. The others are logically deduced based on this sole one.
 
-When the expression evinces no unit right away, an interpolation must be performed in order to call the variable, letting its unit to be specified by its side. It is the case of the ``$width`` variable on the previous snippet.
+When the expression evinces no unit right away, an interpolation must be performed in order to call the variable, letting its unit to be specified beside it.
 
 For more information about mathematical functions such as ``round()``, refer to [the official documentation](https://sass-lang.com/documentation/modules/math).
 
@@ -230,7 +230,7 @@ If an argument is followed by ``...``, it must be acessed inside the function as
 
 Errors and warnings may be arisen by applying the respective ``@error`` and ``@warn`` directives.
 
-When calling the function, both hyphen and underscore are considered the same character.
+Both hyphen and underscore are considered the same character when calling the function.
 
 Sass supports flow control, loops and iteration through lists. For a detailed view on these, check [its official documentation](https://sass-lang.com/documentation/at-rules/control).
 
@@ -258,7 +258,7 @@ a:visited {
 }
 ```
 
-Since both ``lighten()`` and ``darken()`` rapidly turn the colour into respectively white and black, [Giraudel](https://sass-guidelin.es/#lightening-and-darkening-colors) advises against their adopting, rather recommending the employing of the smoother ``mix()`` function:
+Since both ``lighten()`` and ``darken()`` have a low transformation threshold, rapidly turning the desired colour into white and black respectively, [Giraudel](https://sass-guidelin.es/#lightening-and-darkening-colors) advises against their adoption, rather recommending the employing of the smoother ``mix()`` function:
 
 ```scss
 @charset 'utf-8';
@@ -282,7 +282,7 @@ a:visited {
 
 Nesting the selectors makes it possible not to repeat code unnecessarily.
 
-They are specially convenient when a selector holds a significant number of pseudo-classes, which was the case of the last excerpt from the previous section. It may be rewritten, using the nesting technique, as:
+They are specially convenient when a selector holds a significant number of pseudo-classes, which was the case of the last excerpt from the previous section. This may be rewritten, using the nesting technique, as:
 
 ```scss
 @charset 'utf-8';
@@ -324,7 +324,7 @@ p p:hover {
 }
 ```
 
-However, nesting selectors inside each other is useful for repetitive structures similar as the one :
+However, nesting selectors inside each other is useful for repetitive structures similar as:
 
 ```scss
 #menu { ... }
@@ -364,11 +364,11 @@ $default_colour:#fff;
 
 Readers are cautioned against nesting, unless the resulting structure is mandatory or expressly needed, in that it greatly reduces performance: nestings could go fathomlessly, and the greater the number of selectors, the slower the browser interprets the rules specified by them, since most browsers would read those selectors from left to right.
 
-Moreover, nesting may also increase coupling between the HTML and the CSS, causing the last to be extremely dependant on the first, thus possibly crashing the whole layout after minor changes to the HTML.
+Moreover, nesting may also increase coupling between the HTML and the CSS, causing the last to be extremely dependant on the former, thus rising the possibility of a whole layout crash after minor changes to the HTML.
 
 ## Media Queries ##
 
-Media queries can be nested as well, inside the selectors they must adjust.
+Media queries can be nested inside the selectors they must adjust.
 
 This way, the query stays closer to the element they modify, improving readability:
 
@@ -396,7 +396,7 @@ Instead of using nested code, a better approach to logically divide the styleshe
 
 Those files are compiled and then regrouped into a single one again by using the the Sass-extended ``@import`` directive, in order to lessen the number of HTTP requests made to the server.
 
-So, supposing a layout have files such as ``variables.scss``, ``overall.scss``, ``header.scss``, ``menu.scss``, ``content.scss``, ``about.scss``, ``footer.scss``. A file such as ``style.css`` can be created, combining the others altogether:
+So, supposing a layout have files such as ``variables.scss``, ``overall.scss``, ``header.scss``, ``menu.scss``, ``content.scss``, ``about.scss``, ``footer.scss``, a file named ``style.css`` could be created as the following, combining all the others altogether:
 
 ```scss
 @charset 'utf-8';
@@ -410,7 +410,7 @@ So, supposing a layout have files such as ``variables.scss``, ``overall.scss``, 
 @import "path/to/footer"
 ```
 
-The .scss extension can be omitted. Any other extension used is interpreted by Sass as a call to the traditional CSS ``@import`` directive, which should be avoided because of its low throughput. Albeit it might seem as an issue, this can be dealt with: since every CSS is also SCSS, any stylesheet may be renamed as .scss and then regularly imported by Sass.
+The .scss extension can be omitted. Any other extension used is interpreted by Sass as a call to the traditional CSS ``@import`` directive, which should be avoided because of its low throughput. Albeit it might seem as an issue, this can be dealt with: since every CSS is also SCSS, any stylesheet may be renamed as .scss and then be imported by Sass regularly.
 
 A new functionality has been added to Sass recently. It is called the Module System, created to overcome ``@import`` limitations. For more instructions about it, [refer to the official documentation](https://sass-lang.com/blog/the-module-system-is-launched).
 
@@ -418,9 +418,9 @@ A new functionality has been added to Sass recently. It is called the Module Sys
 
 Extending is one of the many forms Sass implemented the DRY methodology.
 
-It is used when it is interesting to share the same CSS rules with many different selectors at once.
+It is used when it is interesting to share CSS rules with many different selectors at once.
 
-This lessens the number of lines, in that it groups all those selectors with similar properties in one declaration only, at the beginning of the resulting stylesheet. Therefore, a SCSS like:
+This lessens the number of lines, in that it groups all those selectors with similar properties in single declarations, at the beginning of the CSS file. Therefore, a SCSS like:
 
 ```scss
 @charset 'utf-8';
@@ -445,7 +445,7 @@ This lessens the number of lines, in that it groups all those selectors with sim
 }
 ```
 
-Would result in a CSS as the following, where each element that must have a black text colour are grouped together so that the property might be applied to all of them:
+Would result in a CSS as the following, where each element that must have a black text colour are grouped together so that the property is applied to all of them:
 
 ```scss
 .color-black, .another-div, .div, .some-div {
@@ -465,9 +465,9 @@ Would result in a CSS as the following, where each element that must have a blac
 }
 ```
 
-In spite of its usefulness, this method sometimes implies the creation of a common selector (``.color-black`` on the previous case) that may be useless throughout the rest of the stylesheet or the mark-up, just so the others selectors might share its properties.
+Despite its usefulness, this method sometimes implies the creation of a common selector (``.color-black`` on the previous case) that may be useless throughout the rest of the stylesheet or the mark-up, just so the others selectors might share its properties.
 
-Placeholders may be applied to fix this extandable one-time-only selectors issue:
+Placeholders may be applied to fix this one-time-only selectors issue:
 
 ```scss
 @charset 'utf-8';
@@ -492,9 +492,9 @@ Placeholders may be applied to fix this extandable one-time-only selectors issue
 }
 ```
 
-Note that, when ``@extend`` is used, sub-selectors such as ``:hover`` are also extended, which may lead to unpredicted results oblivious users are particularly susceptible to.
+Note that sub-selectors such as ``:hover`` are also extended, which may lead to unpredicted results oblivious users are particularly susceptible to.
 
-So:
+So, the code below:
 
 ```scss
 @charset 'utf-8';
@@ -529,11 +529,9 @@ Generates:
 }
 ```
 
-Extending is also a way to quickly implement the [the BEM methodology](http://getbem.com/naming/).
+Extending is distinctively advantageous to the implementation of [the BEM methodology](http://getbem.com/naming/), in that ``@extend`` assures both the classes and their modifiers are going to share styles, thereby saving the mark-up from the exaggerated number of classes that would otherwise be necessary in order to follow BEM.
 
-The directive is distinctively advantageous to this situation, in that it assures that both the classes and their modifiers are going to share their styles, thereby saving the mark-up from the exaggerated number of classes that would otherwise be necessary in order to follow BEM.
-
-Therefore, instead of giving as many classes as ``block block-lg block-lg-red`` to a HTML element, giving a single ``block-lg-red`` class would work, provided that the SCSS is written as below:
+Therefore, instead of giving as many classes as ``block block-lg block-lg-red`` to a HTML element, a single ``block-lg-red`` would work, provided that the SCSS is written as below:
 
 ```scss
 @charset 'utf-8';
@@ -571,11 +569,11 @@ Because its compiled version would be:
 
 ## Mixins ##
 
-Mixings enable reuse of style definitions.
+Mixins enable reuse of style definitions.
 
 They resemble variables to some extent. The most significant difference is that whilst variables carry values, mixins carry styles excerpts.
 
-They are declared with the ``@mixin`` directive. After their declaration, they are later called employing the ``@include`` directive.
+They are declared with the ``@mixin`` directive. After their declaration, they are later called with the ``@include`` directive.
 
 After the processing, these directives are swopped for the properties contained within the mixin they are including.
 
@@ -600,7 +598,7 @@ $radius: 25%;
 }
 ```
 
-It would give this CSS:
+And it would give this CSS:
 
 ```scss
 .button {
@@ -615,7 +613,8 @@ It would give this CSS:
   border-radius: 25%;
 }
 ```
-Mixins also supports parameters in the manner of functions.  These parameters may have a default value and thus be optional, or they may be passed as lists: 
+
+Mixins also supports parameters, in the manner of functions. They may have a default value and thus be optional, or they may be passed as lists: 
 
 ```scss
 @charset 'utf-8';
@@ -648,7 +647,7 @@ Mixins also supports parameters in the manner of functions.  These parameters ma
 
 ## Either/Or ##
 
-If the repeated code is to have different values at different times, mixins are the answer. The ``@extend`` directive does not support parameters or default values after all.
+If the repeated code must have different values at different times, mixins are the answer. The ``@extend`` directive does not support parameters or default values after all.
 
 In addition, caution must be used when extending selectors, because rules are going to be written right at the beginning of the resulting stylesheet. This might cause later issues, since the succeeding rules may inadvertently overwrite former ones.
 
