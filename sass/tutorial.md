@@ -92,6 +92,7 @@ For the comments not to be shown in the compiled stylesheet, they must be writte
 
 ```scss
 @charset 'utf-8';
+
 // Some comment
 ```
 
@@ -122,6 +123,7 @@ They are similarly declared as regular CSS properties, except a dollar symbol pr
 
 ```scss
 @charset 'utf-8';
+
 $color_gray: #ccc;
 
 body {
@@ -141,6 +143,7 @@ To do that, call the variable inside ``#{$variable}``:
 
 ```scss
 @charset 'utf-8';
+
 $media_specification: "(max-width: 600px)";
 
 @media #{$media_specification} {
@@ -661,4 +664,4 @@ Practice makes perfect. Study [the official documentation](https://sass-lang.com
 
 Moreover, most of the links provided in this introductory tutorial contain in-depth reflections regarding their subjects. Reading those is highly suggested.
 
-Last but not least: take your time. Express yourself. Have fun!
+Last but not least: take your time. Express yourself. Have fun :)
