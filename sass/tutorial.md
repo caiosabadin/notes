@@ -24,9 +24,8 @@ It provides a set of labour-saving directives, instructions and definitions, to 
 2. [Importing](#Importing)
 2. [Extending](#Extending)
 2. [Mixins](#Mixins)
-2. [](#)
-2. [](#)
-2. [](#)
+2. [Either/Or](#eitheror)
+2. [Furthering](#Furthering)
 
 ## Installation ##
 
@@ -656,7 +655,7 @@ Therefore, granted that arguments are not needed and that the rules are not over
 
 In the end, choosing whether to apply mixins or extendings is rather a matter of critical thinking, and this is only possible when the available tools and the expected result are well-known.
 
-## What else to do in Sass? ##
+## Furthering ##
 
 Practice makes perfect. Study [the official documentation](https://sass-lang.com/documentation) and, after mastering Sass, check some of its derivated frameworks, such as [Compass](http://compass-style.org/).
 
