@@ -47,7 +47,7 @@ Therefore, the Sass syntax may be as simple as:
 
 ```scss
 selector {
-	property: value;
+    property: value;
 }
 ```
 
@@ -85,7 +85,7 @@ Their content are always discarded by the compiler, hence never appearing in the
 
 // This selector is not going to be shown elsewhere:
 %selector {
-	color: #000;
+    color: #000;
 }
 ```
 
@@ -104,7 +104,7 @@ They are similarly declared as regular CSS properties, except a dollar symbol pr
 $color_gray: #ccc;
 
 body {
-	background-color: rgb($color_gray, 0.9);
+    background-color: rgb($color_gray, 0.9);
 }
 ```
 
@@ -123,9 +123,9 @@ To do that, call the variable inside ``#{$variable}``:
 $media_specification: "(max-width: 600px)";
 
 @media #{$media_specification} {
-	body {
-		background: white;
-	}
+    body {
+        background: white;
+    }
 }
 ```
 
@@ -138,9 +138,9 @@ $max_size: 600px;
 $media_specification: "(max-width: #{$max_size})";
 
 @media #{$media_specification} {
-	body {
-		background: white;
-	}
+    body {
+        background: white;
+    }
 }
 ```
 
@@ -190,11 +190,11 @@ Sass permits the creation of functions:
 @charset 'utf-8';
 
 @function function-name($argument1, $argument2: defaultValue, $argument3...) {
-	$result: $argument1 + $argument2;
-	@each $number in $argument3 {
-		$result: $result * $number;
-	}
-	@return $result;
+    $result: $argument1 + $argument2;
+    @each $number in $argument3 {
+        $result: $result * $number;
+    }
+    @return $result;
 }
 ```
 
@@ -222,15 +222,15 @@ For example, ``lighten()`` and ``darken()`` causes a colour to respectively turn
 $default_colour: #a33efd;
 
 a {
-	color: $default_colour;
+    color: $default_colour;
 }
 
 a:hover {
-	color: lighten($default_colour, 10%);
+    color: lighten($default_colour, 10%);
 }
 
 a:visited {
-	color: darken($default_colour, 20);
+    color: darken($default_colour, 20);
 }
 ```
 
@@ -242,15 +242,15 @@ Since both ``lighten()`` and ``darken()`` rapidly turn the colour into respectiv
 $default_colour: #a33efd;
 
 a {
-	color: $default_colour;
+    color: $default_colour;
 }
 
 a:hover {
-	color: mix(white, $default_colour, 10%);
+    color: mix(white, $default_colour, 10%);
 }
 
 a:visited {
-	color: mix(black, $default_colour, 20);
+    color: mix(black, $default_colour, 20);
 }
 ```
 
@@ -266,14 +266,14 @@ They are specially convenient when a selector holds a significant number of pseu
 $default_colour: #a33efd;
 
 a {
-	color: $default_colour;
+    color: $default_colour;
 
-	&:hover {
-		color: lighten($default_colour, 10);
-	}
+    &:hover {
+        color: lighten($default_colour, 10);
+    }
 
-	&:visited {
-		color: darken($default_colour, 20);
+    &:visited {
+        color: darken($default_colour, 20);
   }
 }
 ```
@@ -318,23 +318,23 @@ Which may be accordingly nested as:
 $default_colour:#fff;
 
 #menu {
-	color: $default_colour;
+    color: $default_colour;
 
-	ul {
-		list-style: none;
+    ul {
+        list-style: none;
 
-		li {
-			padding: 5px;
+        li {
+            padding: 5px;
 
-			a {
-				color: darken($default_colour, 100);
-				
-				&:hover {
-					color: darken($default_colour, 85); 
-				} 
-			}
-		}
-	}
+            a {
+                color: darken($default_colour, 100);
+                
+                &:hover {
+                    color: darken($default_colour, 85); 
+                } 
+            }
+        }
+    }
 }
 ```
 
@@ -362,9 +362,9 @@ header {
 }
 ```
 
-Despite improving readability, it also increases the number of lines. This is so because Sass will not group equal media queries declarations together.
+Anyhow, the community discourage designers from doing so, since Sass does not group identical rules together in a single declaration; instead, it repeats them all over the code.
 
-Nevertheless, this problem may as well be overcome. For example, [this text by Dominique Briggs](https://medium.com/front-end-developers/the-solution-to-media-queries-in-sass-5493ebe16844) provides a simple yet elegant solution to this problem.
+Nevertheless, [on this text](https://medium.com/front-end-developers/the-solution-to-media-queries-in-sass-5493ebe16844), Dominique Briggs arranges a simple yet elegant solution to overcome this problem.
 
 ## The import directive ##
 
@@ -402,22 +402,22 @@ This lessens the number of lines, in that it groups all those selectors with sim
 @charset 'utf-8';
 
 .color-black {
-	color:#000;
+    color:#000;
 }
 
 .some-div {
-	@extend .color-black;
-	background:#eee;
+    @extend .color-black;
+    background:#eee;
 }
 
 .div {
-	@extend .color-black;
-	background:#aaa;
+    @extend .color-black;
+    background:#aaa;
 }
 
 .another-div {
-	@extend .color-black;
-	background:#fff;
+    @extend .color-black;
+    background:#fff;
 }
 ```
 
@@ -449,22 +449,22 @@ Placeholders may be applied to fix this extandable one-time-only selectors issue
 @charset 'utf-8';
 
 %color-black {
-	color:#000;
+    color:#000;
 }
 
 .some-div {
-	@extend %color-black;
-	background:#eee;
+    @extend %color-black;
+    background:#eee;
 }
 
 .div {
-	@extend %color-black;
-	background:#aaa;
+    @extend %color-black;
+    background:#aaa;
 }
 
 .another-div {
-	@extend %color-black;
-	background:#fff;
+    @extend %color-black;
+    background:#fff;
 }
 ```
 
@@ -515,17 +515,17 @@ Therefore, instead of giving as many classes as ``block block-lg block-lg-red`` 
 @charset 'utf-8';
 
 .block {
-	display: block;
-	
-	&-lg {
-		@extend .block;
-		width:800px;
-	
-		&-red {
-			@extend .block-lg;
-			background-color:#f00;
-		}
-	}
+    display: block;
+    
+    &-lg {
+        @extend .block;
+        width:800px;
+    
+        &-red {
+            @extend .block-lg;
+            background-color:#f00;
+        }
+    }
 }
 ```
 
