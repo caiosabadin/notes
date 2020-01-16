@@ -615,7 +615,7 @@ It would give this CSS:
   border-radius: 25%;
 }
 ```
-Mixins supports parameters in the manner of functions.  These parameters may have a default value and thus be optional, or they may be passed as lists: 
+Mixins also supports parameters in the manner of functions.  These parameters may have a default value and thus be optional, or they may be passed as lists: 
 
 ```scss
 @charset 'utf-8';
