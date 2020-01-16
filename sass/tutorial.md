@@ -10,7 +10,7 @@ It provides a set of labour-saving directives, instructions and definitions, to 
 
 1. [Installation](#Installation)
 2. [Compiling](#Compiling)
-2. [Writing SCSS](#Writing SCSS)
+2. [Writing SCSS](#Writing-SCSS)
 2. [](#)
 2. [](#)
 2. [](#)
