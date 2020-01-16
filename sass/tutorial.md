@@ -190,11 +190,11 @@ Sass permits the creation of functions:
 @charset 'utf-8';
 
 @function function-name($argument1, $argument2: defaultValue, $argument3...) {
-    $result: $argument1 + $argument2;
+    $resultult: $argument1 + $argument2;
     @each $number in $argument3 {
-        $result: $result * $number;
+        $resultult: $resultult * $number;
     }
-    @return $result;
+    @return $resultult;
 }
 ```
 
@@ -547,10 +547,19 @@ Because its compiled version would be:
 
 ## Mixins ##
 
-Mixins are another great way to practice the DRY methodology. They differ from the extend in that they don't join all the extended selectors at the beginning of the resulting CSS file, but rather replace its call by the supposed code. So, let the preprocessor work on the following code:
+Mixings enable reuse of style definitions.
+
+They resemble variables to some extent. The most significant difference is that whilst variables carry values, mixins carry styles excerpts.
+
+They are declared with the ``@mixin`` directive. After their declaration, they are later called employing the ``@include`` directive.
+
+After the processing, these directives are swopped for the properties contained within the mixin they are including.
+
+So, let the preprocessor work on the following SCSS:
 
 ```scss
 @charset 'utf-8';
+
 $radius: 25%;
 @mixin round-border {
     -webkit-border-radius: $radius;
@@ -565,13 +574,9 @@ $radius: 25%;
 .some-div {
     @include round-border;
 }
-
-.another-div {
-    @include round-border;
-}
 ```
 
-And it would give us this CSS:
+It would give this CSS:
 
 ```scss
 .button {
@@ -585,22 +590,27 @@ And it would give us this CSS:
   -moz-border-radius: 25%;
   border-radius: 25%;
 }
-
-.another-div {
-  -webkit-border-radius: 25%;
-  -moz-border-radius: 25%;
-  border-radius: 25%;
-}
 ```
-
-It is also possible to pass parameters to the mixins, and set default values to those:
+Mixins supports parameters in the manner of functions.  These parameters may have a default value and thus be optional, or they may be passed as lists: 
 
 ```scss
 @charset 'utf-8';
-@mixin round-border($radius: 25%) {
-    -webkit-border-radius: $radius;
-       -moz-border-radius: $radius;
-            border-radius: $radius;
+
+@mixin round-border($radius: 25%, $numbers...) {
+    $result: 1;
+    
+    @each $number in $numbers {
+      $result: $result * $number;
+    }
+    
+    $result: $result+$radius;
+    @if $result > 100 {
+      $result: 100%;
+    }
+    
+    -webkit-border-radius: $result;
+       -moz-border-radius: $result;
+            border-radius: $result;
 }
 
 .button {
@@ -608,28 +618,26 @@ It is also possible to pass parameters to the mixins, and set default values to 
 }
 
 .some-completely-rounded-div {
-    @include round-border(100%);
+    @include round-border(100%, 2, 3, 4);
 }
 ```
 
-## Either extend or mixin ##
+## Should I extend or should I include now? ##
 
-Since both directives seem to provide equal results, it's natural to wonder what should be used.
+If the repeated code is to have different values at different times, mixins are the answer. The ``@extend`` directive does not support parameters or default values after all.
 
-However, it's clear when to apply either of those: if the code is to be repeated with different values at different times, the better answer are the mixins. After all, the ``@extend`` directive doesn't support parameters or default values.
+In addition, caution must be used when extending selectors, because rules are going to be written right at the beginning of the resulting stylesheet. This might cause later issues, since the succeeding rules may inadvertently overwrite former ones.
 
-Caution must be also used when it comes to the ``@extend`` because its rules are set right at the beginning of the resulting stylesheet, which might raise issues lately, since following rules may inadvertently overwrite those first ones.
+However, diffusely applying mixins may as well be not so good for the final result, in that it would repeat styles that could otherwise be joined together in a single-line group of selectors.
 
-Nevertheless, applying mixins in a large scale might as well be not good, in that it would repeat lines that could otherwise be joined together in a single-line group of selectors.
+Therefore, granted that arguments are not needed and that the rules are not overwritten, the extend technique might be good to diminish code.
 
-So, whether parameters aren't needed and one can guarantee the rules aren't going to be overwritten later, the extend technique might be employed in order to avoid crafting much too large hence heavy CSS files.
+In the end, choosing whether to apply mixins or extendings is rather a matter of critical thinking, and this is only possible when the available tools and the expected result are well-known.
 
 ## What else to do in Sass? ##
 
-Besides the usual reading about the different frameworks derivated from Sass, such as [http://compass-style.org/](Compass), there is more to check.
+Practice makes perfect. Study [the official documentation](https://sass-lang.com/documentation) and, after mastering Sass, check some of its derivated frameworks, such as [Compass](http://compass-style.org/).
 
-It is recommended learning how to work with the [https://sass-lang.com/documentation/at-rules/use](the new modules system), which should replace most, if not all, uses of ``@import``.
+Moreover, most of the links provided in this introductory tutorial contain in-depth reflections regarding their subjects. Reading those is highly suggested.
 
-Getting to know more about SassScript may be as well very benefic. And, to do that, being acquainted with [https://sass-lang.com/documentation/at-rules/control](the flow control rules) is imperative.
-
-Last but not least, the awareness of [https://sass-lang.com/documentation/modules](some of its built-in modules' functions) may someday prove very useful, specially those related to [https://sass-lang.com/documentation/modules/math](mathematics), [https://sass-lang.com/documentation/modules/color](colours), [https://sass-lang.com/documentation/modules/string](strings), and [https://sass-lang.com/documentation/modules/list](lists).
+Last but not least: take your time. Express yourself. Have fun!
