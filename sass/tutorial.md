@@ -10,16 +10,20 @@ It provides a set of labour-saving directives, instructions and definitions, to 
 
 1. [Installation](#Installation)
 2. [Compiling](#Compiling)
-2. [Writing SCSS](#Writing-SCSS)
-2. [](#)
-2. [](#)
-2. [](#)
-2. [](#)
-2. [](#)
-2. [](#)
-2. [](#)
-2. [](#)
-2. [](#)
+2. [Syntax](#Syntax)
+2. [Encoding](#Encoding)
+2. [Comments](#Comments)
+2. [Placeholders](#Placeholders)
+2. [Variables](#Variables)
+2. [Interpolation](#Interpolation)
+2. [Expressions](#Expressions)
+2. [Functions](#Functions)
+2. [Colours](#Colours)
+2. [Nesting](#Nesting)
+2. [Media Queries](#Media-Queries)
+2. [Importing](#Importing)
+2. [Extending](#Extending)
+2. [Mixins](#Mixins)
 2. [](#)
 2. [](#)
 2. [](#)
@@ -57,7 +61,7 @@ For more information about that argument, read [this article by Guil Hernandez](
 
 Should a quick test be run elsewhere, in-browser compilators are available, such as [SassMeister](https://www.sassmeister.com).
 
-## Writing SCSS ##
+## Syntax ##
 
 Plain CSS is valid SCSS, although the contrary affirmation is not always true.
 
@@ -162,7 +166,7 @@ $media_specification: "(max-width: #{$max_size})";
 }
 ```
 
-## Expressions inside variables ##
+## Expressions ##
 
 Variables work with mathematical expressions, and they also support some sophisticated function calls.
 
@@ -200,7 +204,7 @@ When the expression evinces no unit right away, an interpolation must be perform
 
 For more information about mathematical functions such as ``round()``, refer to [the official documentation](https://sass-lang.com/documentation/modules/math).
 
-## Creating functions ##
+## Functions ##
 
 Sass permits the creation of functions:
 
@@ -228,7 +232,7 @@ When calling the function, both hyphen and underscore are considered the same ch
 
 Sass supports flow control, loops and iteration through lists. For a detailed view on these, check [its official documentation](https://sass-lang.com/documentation/at-rules/control).
 
-## A pair of useful functions ##
+## Colours ##
 
 Besides the processing of numbers, the built-in functions on Sass also deal with [strings](https://sass-lang.com/documentation/modules/string), [colours](https://sass-lang.com/documentation/modules/color) and [more](https://sass-lang.com/documentation/modules).
 
@@ -384,7 +388,7 @@ Anyhow, the community discourage designers from doing so, since Sass does not gr
 
 Nevertheless, [on this text](https://medium.com/front-end-developers/the-solution-to-media-queries-in-sass-5493ebe16844), Dominique Briggs arranged a simple yet elegant solution to this issue.
 
-## The import directive ##
+## Importing ##
 
 Instead of using nested code, a better approach to logically divide the stylesheet is to physically split its related parts into separate files.
 
@@ -640,7 +644,7 @@ Mixins supports parameters in the manner of functions.  These parameters may hav
 }
 ```
 
-## Should I extend or should I include now? ##
+## Either/Or ##
 
 If the repeated code is to have different values at different times, mixins are the answer. The ``@extend`` directive does not support parameters or default values after all.
 
