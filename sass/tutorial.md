@@ -50,7 +50,7 @@ In order to compile SCSS into CSS, run:
 sass source_file.scss:resulting_file.css
 ```
 
-Calling it with the optional argument ``--watch`` obliges Sass to automatically recompile whenever changes are made on the specified .scss file:
+Calling it with the optional argument ``--watch`` obliges Sass to automatically recompile whenever changes are made to the specified .scss file:
 
 ```bash
 sass --watch source_file.scss:resulting_file.css
