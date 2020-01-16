@@ -74,7 +74,7 @@ selector {
 
 ## Encoding ##
 
-It is good practice to enforce the character encoding.
+It is good practice to enforce character encoding.
 
 Put this right before anything else on the stylesheet:
 
