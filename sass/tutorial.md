@@ -364,7 +364,7 @@ header {
 
 Anyhow, the community discourage designers from doing so, since Sass does not group identical rules together in a single declaration; instead, it repeats them all over the code.
 
-Nevertheless, [on this text](https://medium.com/front-end-developers/the-solution-to-media-queries-in-sass-5493ebe16844), Dominique Briggs arranges a simple yet elegant solution to overcome this problem.
+Nevertheless, [on this text](https://medium.com/front-end-developers/the-solution-to-media-queries-in-sass-5493ebe16844), Dominique Briggs arranged a simple yet elegant solution to this issue.
 
 ## The import directive ##
 
