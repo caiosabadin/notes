@@ -71,7 +71,9 @@ selector {
     property: value;
 }
 ```
-NOTE: There is another syntax available. It works in the same manner of Python or Ruby code, which means blocks are demarked solely by identation, rather than curly brackets, as in:
+There is another syntax available.
+
+It works in the same manner of Python or Ruby. Mostly, it means blocks are demarked solely by identation, rather than curly brackets, and that no semicolon is used at the ending of the lines, as in:
 
 ```sass
 selector
@@ -84,7 +86,7 @@ selector
 
 To work with this syntax, files must be saved as .sass instead of .scss.
 
-This format however is advised against, in that it severely breaks compatibility with regular CSS files, which, among other possible issues, makes it harder to copy and paste.
+This format, however, is advised against. It severely breaks compatibility with regular CSS files, which, among other possible issues, makes it harder to copy and paste.
 
 ## Encoding ##
 
