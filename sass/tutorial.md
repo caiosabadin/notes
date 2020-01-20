@@ -71,6 +71,20 @@ selector {
     property: value;
 }
 ```
+NOTE: There is another syntax available. It works in the same manner of Python or Ruby code, which means blocks are demarked solely by identation, rather than curly brackets, as in:
+
+```sass
+selector
+    property: value
+    property: value
+    
+selector
+    property: value
+```
+
+To work with this syntax, files must be saved as .sass instead of .scss.
+
+This format however is advised against, in that it severely breaks compatibility with regular CSS files, which, among other possible issues, makes it harder to copy and paste.
 
 ## Encoding ##
 
