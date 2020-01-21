@@ -73,7 +73,7 @@ selector {
 ```
 There is another syntax available.
 
-It works in the same manner of Python or Ruby. Mostly, it means blocks are demarked solely by identation, rather than curly brackets, and that no semicolon is used at the ending of the lines, as in:
+In the same manner of Ruby or Python, blocks are not demarcated by curly brackets, solely by identation, and no semicolon is placed at the ending of the properties' declaration.
 
 ```sass
 selector
@@ -86,7 +86,11 @@ selector
 
 To work with this syntax, files must be saved as .sass instead of .scss.
 
-This format, however, is advised against. It severely breaks compatibility with regular CSS files, which, among other possible issues, makes it harder to copy and paste.
+However, this format breaks compatibility with regular CSS files, a problem not of little consequence.
+
+In effect, it immediately makes copy and paste harder and, in the long run, other possible issues may arise, such as flawing the use of [the ``@import`` directive](#Importing).
+
+In the light of what was discussed, this older syntax is thus advised against.
 
 ## Encoding ##
 
