@@ -24,6 +24,7 @@ It provides a set of labour-saving directives, instructions and definitions, to 
 2. [Importing](#Importing)
 2. [Extending](#Extending)
 2. [Mixins](#Mixins)
+2. [Content](#Content)
 2. [Either/Or](#eitheror)
 2. [Furthering](#Furthering)
 
@@ -660,6 +661,48 @@ Mixins also supports parameters, in the manner of functions. They may have a def
 
 .some-completely-rounded-div {
     @include round-border(100%, 2, 3, 4);
+}
+```
+
+## Content ##
+
+Style blocks may also be entirely passed to a mixin.
+
+To support this operation, Sass offers the special ``@content`` directive.
+
+This way, the rules defined within the ``@include`` directive substitutes the mixin's ``@content``:
+
+```scss
+@mixin large {
+    @media (min-width: 800px) {
+        font-size:1.5rem;
+        @content;
+    }
+}
+
+#element {
+    font-size:1.2rem;
+    
+    @include large {
+        width:500px;
+        height:300px;
+    }
+}
+```
+
+The previous code results in the following:
+
+```css
+#element {
+  font-size: 1.2rem;
+}
+
+@media (min-width: 800px) {
+  #element {
+    font-size: 1.5rem;
+    width: 500px;
+    height: 300px;
+  }
 }
 ```
 
