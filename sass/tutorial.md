@@ -71,7 +71,7 @@ selector {
     property: value;
 }
 ```
-There is another syntax available.
+There is another syntax available. To work with it, files must be saved as .sass instead of .scss.
 
 In the same manner of Ruby or Python, blocks are not demarcated by curly brackets, solely by identation, and no semicolon is placed at the ending of the properties' declaration.
 
@@ -83,8 +83,6 @@ selector
 selector
     property: value
 ```
-
-To work with this syntax, files must be saved as .sass instead of .scss.
 
 However, this format breaks compatibility with regular CSS files, a problem not of little consequence.
 
