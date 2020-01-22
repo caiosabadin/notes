@@ -30,12 +30,9 @@ It provides a set of labour-saving directives, instructions and definitions, to 
 
 ## Installation ##
 
-Install Ruby. Then use ``gem`` to install Sass:
+Download your version [from here](https://github.com/sass/dart-sass/releases/tag/1.25.0).
 
-```bash
-curl -sSL https://get.rvm.io | bash -s stable
-gem install sass
-```
+Either add it to your PATH variable or create a symbolic link.
 
 Call Sass with the argument ``-v`` to check if everything with the installation went right:
 
