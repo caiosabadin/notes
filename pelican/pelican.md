@@ -1,4 +1,4 @@
-# Quick tips #
+# Pelican Basics #
 
 Here is a straightforward guide regarding Pelican, a static blog generator written in Python.
 
