@@ -48,7 +48,7 @@ After that, run this command for the configurations to take effect:
 pelican content
 ```
 
-## Bloggin ##
+## Bloggin' ##
 
 Pelican works with Markdown files.
 
@@ -86,3 +86,13 @@ DEFAULT_CATEGORY = 'Uncategorised'
 To preview your blog, in your project's root directory, run:
 
 ```pelican --listen```
+
+If you want to actualise the content whilst the server is running, add the `-r` parametter:
+
+```pelican -r --listen```
+
+## Hosting ##
+
+Whenever you run a `pelican content` or do any changes when you are running `pelican -r --listen`, your `output` directory will be updated.
+
+To host your blog, you just have to copy the content of that `output` directory and put it in your server.
